@@ -1,40 +1,37 @@
+#include "Headers/simulation.hpp"
 #include "Platform/Platform.hpp"
-
 int main()
 {
+	std::srand(std::time(nullptr));
 	util::Platform platform;
 
 #if defined(_DEBUG)
 	std::cout << "Hello World!" << std::endl;
 #endif
 
-	sf::RenderWindow window;
-	// in Windows at least, this must be called before creating the window
-	float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
-	// Use the screenScalingFactor
-	window.create(sf::VideoMode(200.0f * screenScalingFactor, 200.0f * screenScalingFactor), "SFML works!");
-	platform.setIcon(window.getSystemHandle());
+	Simulation simulation;
+	// sf::RenderWindow window;
+	// // in Windows at least, this must be called before creating the window
+	// float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
+	// std::cout << screenScalingFactor << std::endl;
+	// // Use the screenScalingFactor
+	// window.create(sf::VideoMode(1600.0f * screenScalingFactor, 1600.0f * screenScalingFactor), "Sheep Herder");
+	// platform.setIcon(window.getSystemHandle());
 
-	sf::CircleShape shape(window.getSize().x / 2);
-	shape.setFillColor(sf::Color::White);
+	// sf::CircleShape shape(window.getSize().x / 2);
+	// shape.setFillColor(sf::Color::White);
 
-	sf::Texture shapeTexture;
-	shapeTexture.loadFromFile("content/sfml.png");
-	shape.setTexture(&shapeTexture);
+	// sf::Texture shapeTexture;
+	// shapeTexture.loadFromFile("content/sfml.png");
+	// shape.setTexture(&shapeTexture);
 
-	sf::Event event;
-
-	while (window.isOpen())
+	while (simulation.running())
 	{
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
+		//Update
+		simulation.update();
 
-		window.clear();
-		window.draw(shape);
-		window.display();
+		//Render
+		simulation.render();
 	}
 
 	return 0;

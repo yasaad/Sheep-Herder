@@ -18,5 +18,5 @@ LINK_LIBRARIES := \
 
 PRODUCTION_LINUX_ICON := sfml
 
-PRODUCTION_LINUX_APP_NAME := SFML Boilerplate
-PRODUCTION_LINUX_APP_COMMENT := My SFML Game
+PRODUCTION_LINUX_APP_NAME := Sheep Herder
+PRODUCTION_LINUX_APP_COMMENT := AI driven sheep herder simulation using c++ and python
