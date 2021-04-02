@@ -16,23 +16,24 @@ void Simulation::initWindow()
 	this->window->setFramerateLimit(60);
 }
 
-void Simulation::initHerd()
+void Simulation::initHerd(sf::Texture* sheepTexture)
 {
-	std::cout << (int)sizeof(this->sheep) / sizeof(*this->sheep) << std::endl;
-	for (int i = 0; i < (int)(sizeof(this->sheep) / sizeof(*this->sheep)); i++)
+	for (int i = 0; i < 10000; i++)
 	{
-		this->sheep[i] = new Sheep(sf::Vector2f(
-			std::rand() % this->window->getSize().x,
-			std::rand() % this->window->getSize().y));
+		Sheep* temp = new Sheep(sf::Vector2f(
+									std::rand() % this->window->getSize().x,
+									std::rand() % this->window->getSize().y),
+			sheepTexture);
+		herd.push_back(temp);
 	}
 }
 
 //Constructors / Destructors
-Simulation::Simulation()
+Simulation::Simulation(sf::Texture* sheepTexture)
 {
 	this->initVariables();
 	this->initWindow();
-	this->initHerd();
+	this->initHerd(sheepTexture);
 }
 
 Simulation::~Simulation()
@@ -80,9 +81,9 @@ void Simulation::update()
 {
 	this->pollEvents();
 	this->updateMousePosition();
-	for (int i = 0; i < (int)(sizeof(this->sheep) / sizeof(*this->sheep)); i++)
+	for (Sheep* sheep : herd)
 	{
-		this->sheep[i]->update(this->window);
+		sheep->update(this->window);
 	}
 }
 
@@ -90,10 +91,9 @@ void Simulation::render()
 {
 	this->window->clear(sf::Color(80, 180, 130, 255));
 	//Draw game objects
-	for (int i = 0; i < (int)(sizeof(this->sheep) / sizeof(*this->sheep)); i++)
+	for (Sheep* sheep : herd)
 	{
-		this->sheep[i]->render(this->window);
+		sheep->render(this->window);
 	}
-
 	this->window->display();
 }

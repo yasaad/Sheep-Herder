@@ -13,21 +13,22 @@ private:
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
 	sf::Event event;
+	sf::RectangleShape shape;
 
 	//Mouse Position
 	sf::Vector2i mousePosition;
 
 	//Game objects
-	Sheep* sheep[10000];
+	std::list<Sheep*> herd;
 
 	//Private Functions
 	void initVariables();
 	void initWindow();
-	void initHerd();
+	void initHerd(sf::Texture* sheepTexture);
 
 public:
 	//Constructors / Distructors
-	Simulation();
+	Simulation(sf::Texture* sheepTexture);
 	virtual ~Simulation();
 
 	//Accessors

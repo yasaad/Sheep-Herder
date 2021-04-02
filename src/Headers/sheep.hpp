@@ -9,17 +9,17 @@
 class Sheep
 {
 private:
-	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(20.0f, 12.0f));
 	sf::Vector2f velocity;
 	sf::Vector2f acceleration;
 	sf::Color color;
 	// float maxForce = 0.2f;
 	float magnitude;
 
-	void initVariables(sf::Vector2f position);
+	void initVariables(sf::Vector2f position, sf::Texture* texture);
 
 public:
-	Sheep(sf::Vector2f position);
+	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(20.0f, 12.0f));
+	Sheep(sf::Vector2f position, sf::Texture* texture);
 	virtual ~Sheep();
 
 	void update(sf::RenderTarget* target);

@@ -9,7 +9,14 @@ int main()
 	std::cout << "Hello World!" << std::endl;
 #endif
 
-	Simulation simulation;
+	sf::Texture sheepTexture;
+	if (!sheepTexture.loadFromFile("content/Sheep_outline.png"))
+	{
+		std::cout << "Faild to load sheep texture!" << std::endl;
+		return EXIT_FAILURE;
+	}
+	Simulation* simulation = new Simulation(&sheepTexture);
+
 	// sf::RenderWindow window;
 	// // in Windows at least, this must be called before creating the window
 	// float screenScalingFactor = platform.getScreenScalingFactor(window.getSystemHandle());
@@ -18,20 +25,16 @@ int main()
 	// window.create(sf::VideoMode(1600.0f * screenScalingFactor, 1600.0f * screenScalingFactor), "Sheep Herder");
 	// platform.setIcon(window.getSystemHandle());
 
-	// sf::CircleShape shape(window.getSize().x / 2);
+	// sf::RectangleShape shape(sf::Vector2f(100.0f, 100.0f));
 	// shape.setFillColor(sf::Color::White);
 
-	// sf::Texture shapeTexture;
-	// shapeTexture.loadFromFile("content/sfml.png");
-	// shape.setTexture(&shapeTexture);
-
-	while (simulation.running())
+	while (simulation->running())
 	{
 		//Update
-		simulation.update();
+		simulation->update();
 
 		//Render
-		simulation.render();
+		simulation->render();
 	}
 
 	return 0;
