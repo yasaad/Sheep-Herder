@@ -15,11 +15,11 @@ private:
 	// float maxForce = 0.2f;
 	float magnitude;
 
-	void initVariables(sf::Vector2f position, sf::Texture* texture);
+	void initVariables(sf::Vector2f position);
 
 public:
-	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(20.0f, 12.0f));
-	Sheep(sf::Vector2f position, sf::Texture* texture);
+	sf::RectangleShape shape = sf::RectangleShape(sf::Vector2f(32.0f, 14.0f));
+	Sheep(sf::Vector2f position);
 	virtual ~Sheep();
 
 	void update(sf::RenderTarget* target);
