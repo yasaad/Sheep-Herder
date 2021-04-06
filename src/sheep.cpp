@@ -1,24 +1,19 @@
 #include "Headers/sheep.hpp"
 
 //private
-void Sheep::initVariables(sf::Vector2f position, sf::Texture* sheepTexture)
+void Sheep::initVariables(sf::Vector2f position)
 {
 	//Number between 3 and 7
 	this->magnitude = std::rand() % 4 + 3;
 	this->velocity = sf::Vector2f((float)std::rand() / RAND_MAX * 2.0f - 1, (float)std::rand() / RAND_MAX * 2.0f - 1);
 	this->shape.setOrigin(this->shape.getSize() / 2.0f);
-	this->shape.setTexture(sheepTexture);
-	// this->shape.setFillColor(sf::Color::White);
-	// this->shape.setOutlineColor(sf::Color::Black);
-	// this->shape.setOutlineThickness(this->shape.getSize().x / 5.0f);
-	// std::cout << position.x << " : " << position.y << std::endl;
 	this->shape.setPosition(position);
 }
 
 //public
-Sheep::Sheep(sf::Vector2f position, sf::Texture* sheepTexture)
+Sheep::Sheep(sf::Vector2f position)
 {
-	this->initVariables(position, sheepTexture);
+	this->initVariables(position);
 }
 
 Sheep::~Sheep()

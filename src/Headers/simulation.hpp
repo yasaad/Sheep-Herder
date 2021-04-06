@@ -14,6 +14,7 @@ private:
 	sf::VideoMode videoMode;
 	sf::Event event;
 	sf::RectangleShape shape;
+	int herdSize = 10000;
 
 	//Mouse Position
 	sf::Vector2i mousePosition;
@@ -24,11 +25,11 @@ private:
 	//Private Functions
 	void initVariables();
 	void initWindow();
-	void initHerd(sf::Texture* sheepTexture);
+	void initHerd();
 
 public:
 	//Constructors / Distructors
-	Simulation(sf::Texture* sheepTexture);
+	Simulation();
 	virtual ~Simulation();
 
 	//Accessors
@@ -38,5 +39,5 @@ public:
 	void pollEvents();
 	void updateMousePosition();
 	void update();
-	void render();
+	void render(sf::Texture* sheepTexture);
 };

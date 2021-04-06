@@ -15,7 +15,8 @@ int main()
 		std::cout << "Faild to load sheep texture!" << std::endl;
 		return EXIT_FAILURE;
 	}
-	Simulation* simulation = new Simulation(&sheepTexture);
+	// sf::Clock clock;
+	Simulation simulation;
 
 	// sf::RenderWindow window;
 	// // in Windows at least, this must be called before creating the window
@@ -28,13 +29,16 @@ int main()
 	// sf::RectangleShape shape(sf::Vector2f(100.0f, 100.0f));
 	// shape.setFillColor(sf::Color::White);
 
-	while (simulation->running())
+	while (simulation.running())
 	{
+		// sf::Time time = clock.getElapsedTime();
+		// std::cout << 1.0f / time.asSeconds() << std::endl;
+		// clock.restart().asSeconds();
 		//Update
-		simulation->update();
+		simulation.update();
 
 		//Render
-		simulation->render();
+		simulation.render(&sheepTexture);
 	}
 
 	return 0;
