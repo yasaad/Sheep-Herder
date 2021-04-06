@@ -14,13 +14,13 @@ private:
 	sf::VideoMode videoMode;
 	sf::Event event;
 	sf::RectangleShape shape;
-	int herdSize = 10000;
+	int herdSize;
 
 	//Mouse Position
 	sf::Vector2i mousePosition;
 
 	//Game objects
-	std::list<Sheep*> herd;
+	Sheep* herd[100000];
 
 	//Private Functions
 	void initVariables();

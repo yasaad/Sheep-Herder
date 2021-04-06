@@ -2,14 +2,15 @@
 //Private Functions
 void Simulation::initVariables()
 {
+	this->herdSize = sizeof(this->herd) / sizeof(this->herd[0]);
 	this->window = nullptr;
 }
 void Simulation::initWindow()
 {
 	this->videoMode.height = 2000;
-	this->videoMode.width = 2000;
+	this->videoMode.width = 3000;
 
-	this->window = new sf::RenderWindow(this->videoMode, "Sheep Herder", sf::Style::Titlebar | sf::Style::Close /*|
+	this->window = new sf::RenderWindow(this->videoMode, "Sheep Herder", sf::Style::Fullscreen | sf::Style::Titlebar | sf::Style::Close /*|
 		sf::Style::Resize*/
 	);
 
@@ -23,7 +24,7 @@ void Simulation::initHerd()
 		Sheep* temp = new Sheep(sf::Vector2f(
 			std::rand() % this->window->getSize().x,
 			std::rand() % this->window->getSize().y));
-		herd.push_back(temp);
+		herd[i] = temp;
 	}
 }
 
@@ -33,6 +34,7 @@ Simulation::Simulation()
 	this->initVariables();
 	this->initWindow();
 	this->initHerd();
+	std::cout << "Running simulation with " << this->herdSize << " sheep." << std::endl;
 }
 
 Simulation::~Simulation()
@@ -107,7 +109,6 @@ void Simulation::render(sf::Texture* sheepTexture)
 		sf::Transform matrix = sheep->shape.getTransform();
 		sf::Vertex* bottom = &sheepArray[currentSheep * 3];
 		sf::Vertex* top = &sheepArray[(currentSheep + 1) * 3];
-		std::cout << std::endl;
 		bottom[0].position = matrix.transformPoint(sheep->shape.getPoint(0));
 		bottom[1].position = matrix.transformPoint(sheep->shape.getPoint(3));
 		bottom[2].position = matrix.transformPoint(sheep->shape.getPoint(2));

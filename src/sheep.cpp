@@ -21,13 +21,13 @@ Sheep::~Sheep()
 	std::cout << "HERE" << std::endl;
 }
 
-void Sheep::update(sf::RenderTarget* target)
+void Sheep::update(sf::RenderTarget* window)
 {
 	this->shape.setRotation(-std::atan2f(this->velocity.x, this->velocity.y) * 180.0f / M_PI + 90.0f);
 	sf::Vector2f currentPosition = this->shape.getPosition();
 	this->shape.setPosition(
-		std::fmod((currentPosition.x + this->velocity.x), (float)target->getSize().x),
-		std::fmod((currentPosition.y + this->velocity.y), (float)target->getSize().y));
+		std::fmod((currentPosition.x + this->velocity.x), (float)window->getSize().x),
+		std::fmod((currentPosition.y + this->velocity.y), (float)window->getSize().y));
 }
 
 void Sheep::render(sf::RenderTarget* target)
