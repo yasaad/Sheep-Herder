@@ -382,7 +382,7 @@ mkdirprod:
 .PHONY: mkdirprod
 
 define do_copy_to_clean
-	@printf  '$(color_blue)$(UNI_COPY)  Copying \"$(1)\" to \"$(CURDIR)/$(2)\"\n'
+	@printf  '$(color_blue)$(UNI_COPY)Copying \"$(1)\" to \"$(CURDIR)/%s\"\n' "$(2)"
 	$(shell cp -r $(1) $(2))
 endef
 
@@ -460,7 +460,7 @@ ifeq ($(PRODUCTION_MACOS_MAKE_DMG),true)
 	$(_Q)hdiutil convert $(PRODUCTION_FOLDER_MACOS)/.tmp.dmg -format UDZO -o $(PRODUCTION_FOLDER_MACOS)/$(PRODUCTION_MACOS_BUNDLE_NAME).dmg > /dev/null
 	$(_Q)rm -f $(PRODUCTION_FOLDER_MACOS)/.tmp.dmg
 	@printf '\n'
-	@printf '   $(color_blue)Created $(PRODUCTION_FOLDER_MACOS)/$(PRODUCTION_MACOS_BUNDLE_NAME).dmg\n'
+	@printf '   $(color_blue)Created $(PRODUCTION_FOLDER_MACOS)/$(PRODUCTION_MACOS_BUNDLE_NAME).dmg\n' ""
 endif
 endif
 .PHONY: makeproduction
